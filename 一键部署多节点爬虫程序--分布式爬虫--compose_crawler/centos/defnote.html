@@ -1,0 +1,4 @@
+﻿<html><head></head>
+<body><div>[root@k8s-registry centos]# ls</div><div>curl.sh &nbsp;Dockerfile</div><div>[root@k8s-registry centos]# <span class="Apple-style-span" style="background-color: rgb(255, 255, 0);"><b>cat curl.sh&nbsp;</b></span></div><div>for i in {1..100}; do</div><div>&nbsp; &nbsp;curl <span class="Apple-style-span" style="background-color: rgb(255, 255, 0);"><b>http://172.17.38.131</b></span> -o /dev/null</div><div>&nbsp; &nbsp;sleep 1</div><div>done</div><div><br></div><div><br></div><div><br></div><div>[root@k8s-registry centos]# <span class="Apple-style-span" style="background-color: rgb(255, 255, 0);"><b>cat Dockerfile&nbsp;</b></span></div><div>FROM centos:6</div><div>MAINTAINER lizhenliang</div><div>COPY curl.sh /</div><div>CMD ["/bin/bash", "curl.sh"]</div><div>[root@k8s-registry centos]#&nbsp;</div><div><br></div><div><br></div><div><div><br></div></div>
+
+</body></html>
