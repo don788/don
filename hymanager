@@ -1,0 +1,236 @@
+#!/usr/local/python3/bin/python3
+import sys
+import os
+import logging
+import datetime
+import pymysql
+from colorama import  init, Fore, Back, Style
+from sys import argv
+
+LOG_FORMAT = "%(asctime)s %(name)s %(levelname)s %(pathname)s %(message)s "
+DATE_FORMAT = '%Y-%m-%d  %H:%M:%S %a '
+logging.basicConfig(level=logging.DEBUG,format=LOG_FORMAT,datefmt = DATE_FORMAT ,filename=r"execute.log")
+
+class Colored(object):
+	def red(self,s):
+		return Fore.RED + s + Fore.RESET
+	def green(self,s):
+		return Fore.GREEN + s + Fore.RESET
+	def yellow(self,s):
+		return Fore.YELLOW + s + Fore.RESET	
+	def blue(self,s):
+		return Fore.BLUE + s + Fore.RESET	
+	def magenta(self, s):
+		return Fore.MAGENTA + s + Fore.RESET
+	def cyan(self, s):
+		return Fore.CYAN + s + Fore.RESET
+	def white(self, s):
+		return Fore.WHITE + s + Fore.RESET
+	def black(self, s):
+		return Fore.BLACK
+	def white_green(self, s):
+		return Fore.WHITE + Back.GREEN + s + Fore.RESET + Back.RESET 
+
+
+
+class MySQL(Colored):
+	def __init__(self,host,user,passwd,port,db):
+		self.host=host
+		self.user=user
+		self.passwd=passwd
+		self.port=port
+		self.db=db
+		self.connect=pymysql.connect(host=self.host,user=self.user,password=self.passwd,port=self.port,database=self.db)
+		self.cursor=self.connect.cursor()
+			
+		
+	def mysql_dml(self,sql):
+		try:
+			self.cursor.execute(sql)
+			self.connect.commit()
+			print(self.green("%s execute sucess" %sql ))
+			logging.info(sql)
+		except:
+			logging.error(sql)
+			print(self.red("%s is fail" %sql ))
+			self.connect.rollback()		
+
+	def mysql_query(self,sql):
+		try:
+			self.cursor.execute(sql)
+			results=self.cursor.fetchall()
+			print(self.green("%s execute sucess" %sql ))
+			return results
+		except:
+			print(self.red("%s execute fail" %sql ))
+			logging.error(sql)
+
+
+	def mysql_control(self,sql):
+		try:	
+			self.cursor.execute(sql)
+			logging.info(sql)
+			print(self.green("%s execute success" %sql))
+		except:
+			print(self.red("%s execute fail" %sql ))			
+			logging.error(sql)		
+
+
+def dbs():
+	c=Colored()
+	print(c.yellow("[1]hgame"))
+	print(c.yellow("[2]passport"))
+	print(c.yellow("[3]ptgame"))
+	print(c.yellow("[4]log"))
+	print(c.yellow("[5]mmc"))
+	print(c.yellow("[6]lock"))
+	print(c.yellow("[q]quit"))
+	second=input("please input db: ")
+	if second=="1":
+		print("hgame")
+		db="hgame"
+	elif second=="2":
+		print("passport")
+		db="passport"
+	elif second=="3":
+		print("ptgame")
+		db="ptgame"
+	elif second=="4":
+		print("log")
+		db="log"
+	elif second=="5":
+		print("mmc") 
+		db="mmc"
+	elif second=="6":
+		print("hgame_lock")
+		db="hgame_lock"
+	elif second.lower()=="q":
+		db=second.lower()
+	else:
+		db=False
+	return db	
+
+def put(): 
+	c=Colored()
+	while True:
+		print(c.cyan("1.备份"))
+		print(c.cyan("2.进入"))
+		print(c.cyan("q.退出"))
+		first=input("please input the choice(q/Q退出): ")
+		if first=="1":
+			while True:
+				db=dbs()
+				if db=="q":
+					break
+				if not db:
+					continue
+				tables=input("please input table: ")
+				if len(tables)>=2:
+					tables=tables.split(",")
+				backup(tables,db)
+		elif first=="2":
+			while True:
+				db=dbs()
+				if db=="q":
+					break
+				if not db:
+					continue
+				come(db)	
+			
+		
+		elif first.lower()=="q":
+			break
+
+def get_dbinfo():
+	with open("/data/shell/mysql/user.json") as f:
+		for line in f:
+			result=line
+	result=eval(result)
+	return result
+
+def execute(command):
+        color=Colored()
+        status=os.system(command)
+        if status==0:
+                logging.info(command)
+                print(color.green("%s successful" %command))
+        else:
+                logging.error(command)
+                print(color.green("command %s error" %command))
+
+
+def backup(tables,dbname):
+        #host,user,passwd,port,db
+	dbinfo=get_dbinfo().get(dbname)
+	formatted_today=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+	bak_format="bak_%s" %formatted_today
+        #conn=MySQL('10.140.0.10','manager','oracle',3306,'hgame')      
+	conn=MySQL(*dbinfo)
+	for table in tables:
+		bak_table_format="%s_%s" %(bak_format,table)
+		query_sql="show table status like \"%s\"" %(table)
+		try:
+			results=conn.mysql_query(query_sql)[0][4]
+		except:
+			print("%s the table is not exist" %table)
+			return
+		if results > 200000:
+			db=get_dbinfo().get(dbname+"_bak")
+			print(db)
+			dump_com="mysqldump -h%s -u%s -p%s -P%s %s %s > /data/shell/mysql/backup_sql/%s.sql" %(db[0],db[1],db[2],db[3],db[4],table,bak_table_format)
+			print(dump_com)
+			execute(dump_com)
+			continue
+		create_sql="create table %s like %s" %(bak_table_format,table)
+		conn.mysql_control(create_sql)
+		insert_sql="insert into %s select * from %s" %(bak_table_format,table)
+		conn.mysql_dml(insert_sql)
+
+
+def come(dbname):
+	dbinfo=get_dbinfo().get(dbname)		
+	print("coming %s:%s" %(dbinfo[0],dbinfo[4]))
+	command="mysql -h%s -u%s -p%s -P%s %s -A" %(dbinfo[0],dbinfo[1],dbinfo[2],dbinfo[3],dbinfo[4])	
+	execute(command)
+	
+
+def query(sql,dbname,flag,mail=""):
+	nowtime=datetime.datetime.now().strftime("%Y%m%d%H%M%S")	
+	dbinfo=get_dbinfo().get(dbname+"_bak")
+	conn=MySQL(*dbinfo)
+	if flag=="send":
+		sql=sql+" into outfile \"/tmp/%s.csv\" " %nowtime
+		conn.mysql_control(sql)
+		command="scp %s:/%s/%s.csv /tmp/" %(dbinfo[0],"tmp",nowtime)
+		#print(command)
+		execute(command)
+		execute("python /data/shell/mysql/mail.py %s %s %s   /tmp/%s.csv" %(mail,"sql 查询结果","",nowtime))
+	elif flag=="print":
+		results=conn.mysql_query(sql)
+		num=len(results[0])
+		format_num=num * "%s "
+		for i in results:
+			print (format_num %(i))
+
+
+
+if __name__ == '__main__':
+	if len(argv)==4:
+		if argv[1] not in ("hgame","passport","ptgame","log","sincailog","mmc","hgame_lock"):
+			print("db not exits")
+			sys.exit()
+		if argv[3]!="print":
+			print ("please input send or print")	
+			sys.exit()
+		query(argv[2],argv[1],argv[3])
+		#0 db #1 sql #3 print
+	elif len(argv)==5:
+		if argv[1] not  in ("hgame","passport","ptgame","log","sincailog","mmc","hgame_lock"):
+			print("db not exits")
+			sys.exit()
+		if argv[4]!="send":
+			print ("please input send or print")    
+			sys.exit()
+		query(argv[2],argv[1],argv[4],argv[3])
+	else:
+		put()	
