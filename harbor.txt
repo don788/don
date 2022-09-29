@@ -1,0 +1,21 @@
+			搭建私有仓库harbor
+https://github.com/vmware/harbor 官方文档
+1.安装docker
+2.安装dockercommpose
+3.自签https证书   https://github.com/vmware/harbor/blob/master/docs/configure_https.md 官方文档
+openssl req \
+    -newkey rsa:4096 -nodes -sha256 -keyout ca.key \
+    -x509 -days 365 -out ca.crt
+
+openssl req \
+    -newkey rsa:4096 -nodes -sha256 -keyout reg.zhangcaiwang.com.key \
+    -out reg.zhangcaiwang.com.csr
+
+reg.zhangcaiwang.com
+
+openssl x509 -req -days 365 -in reg.zhangcaiwang.com.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out reg.zhangcaiwang.com.crt
+
+reg.zhangcaiwang.com.crt 
+reg.zhangcaiwang.com.key
+Qwer123..
+docker tag SOURCE_IMAGE[:TAG] reg.zhangcaiwang.com/zhang/IMAGE[:TAG]
