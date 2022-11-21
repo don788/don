@@ -141,7 +141,7 @@ class UpdateCode(OutColor):
         # cmd=shlex.split(cmd)
         #out_temp = tempfile.SpooledTemporaryFile(bufsize=10 * 10000)
         #fileno1 = out_temp.fileno()
-        p = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, cwd=cwd, =True,)
+        p = Popen(cmd, stdin=PIPE, stdout=PIPE, stderr=PIPE, cwd=cwd, shell=True,)
         if cmdwait:
             p.wait()
         # if returnvalue:

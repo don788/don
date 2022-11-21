@@ -1,6 +1,5 @@
 #!/usr/bin/python 
 #coding:utf-8 
-
  
 import smtplib,os,time 
 from email.mime.text import MIMEText 
@@ -11,38 +10,38 @@ from sys import argv,exit
 smtp 1 首先使用此smtp,如有问题则使用smtp2
 '''
 gmail1_smtpserver='smtp.gmail.com'
-gmail1_username= 'admin.tech@networkws.com'
-gmail1_password='zaki@ph.admin'
+gmail1_username= 'don09957814172@gmail.com'
+gmail1_password='Zhang78caiwang@'
 gmail1_port=587
-gmail1_disname="系统部-CP运维处<cpadmin@networkws.com>"
+gmail1_disname="系统部-TD运维处<18273441591.com>"
 #######################################
 '''
 如果smtp1出问题则使用此smtp，如果此smtp有问题则使用备用smtp
 '''
 gmail2_smtpserver='smtp.gmail.com'
-gmail2_username= 'admin.tech1@networkws.com'
-gmail2_password='zaki@ph.admin'
+gmail2_username= 'don09957814172@gmail.com'
+gmail2_password='Zhang78caiwang@'
 gmail2_port=587
-gmail2_disname="系统部-CP运维处<cpadmin@networkws.com>"
+gmail2_disname="系统部-TD运维处<18273441591.com>"
 
 ########################################
 '''
 如果smtp2出问题则使用此smtp，如果此smtp有问题则使用备用smtp3
 '''
 gmail3_smtpserver='smtp.gmail.com'
-gmail3_username= 'admin.tech2@networkws.com'
-gmail3_password='zaki@ph.admin'
+gmail3_username= 'don09957814172@gmail.com'
+gmail3_password='Zhang78caiwang@'
 gmail3_port=587 
-gmail3_disname="系统部-CP运维处<cpadmin@networkws.com>"
+gmail3_disname="系统部-TD运维处<18273441591.com>"
 ###########################################
 '''
-如果smtp3出问题则使用此smtp，如果此smtp有问题则使用备用smtp
+#如果smtp3出问题则使用此smtp，如果此smtp有问题则使用备用smtp
 '''
 gmail4_smtpserver='smtp.mailgun.org'
-gmail4_username= 'postmaster@networkws.com'
-gmail4_password='48f0e1b23d96ff80dc6bdaf6939daba6'
+gmail4_username= 'don09957814172@gmail.com'
+gmail4_password='Zhang78caiwang@'
 gmail4_port=587
-gmail4_disname="系统部-CP运维处<cpadmin@networkws.com>"
+gmail4_disname="系统部-TD运维处<18273441591.com>>"
 
 ##############################################################
 '''
@@ -64,7 +63,7 @@ if len(argv)<=4:
     filename=''
 else:
     filename=argv[4:]
-    
+   
 sendto_list=to_list.split(',')[0].split()
 cc_list=to_list.split(',')[1:]
 COMESPACE=','

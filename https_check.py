@@ -187,7 +187,7 @@ def opetion_check(args):
 def main(issave=True, onlyquery=False, urls=[]):
     expireNum = 7
     if not len(urls):
-        with open("/data/shell/4.txt") as fobj:
+        with open("/data/shell/1.txt") as fobj:
             urls = fobj.readlines()
     else:
         urls = [x.strip() for x in urls]
@@ -199,8 +199,8 @@ def main(issave=True, onlyquery=False, urls=[]):
         new_retList.append(ele)
 
     today = time.strftime("%Y%m%d")
-    toname = 'bill.li@networkws.com,ph.admin@weststarinc.co'
-    toname = 'bill.li@networkws.com,ph.admin@weststarinc.co'
+    toname = 'don09957814172@gmail.com,18273441591@163.com'
+    toname ='don09957814172@gmail.com,18273441591@163.com'
     subject = 'https证书过期检测%s' % today
     mailInfo = []
     for ele in new_retList:
@@ -218,7 +218,7 @@ def main(issave=True, onlyquery=False, urls=[]):
         mailInfo.insert(0,"需要处理的https证书的域名列表，列表为空表示没有即将过期（%d天）、或已过期的域名" % expireNum)
     p = "\n".join(mailInfo)
 
-    os.system('python /data/shell/mail.py %s %s "<pre><h3><font face="SimSun"> %s </font></h3></pre>" ' %(toname, subject, p))
+    os.system('python /root/don/mail.py %s %s "<pre><h3><font face="SimSun"> %s </font></h3></pre>" ' %(toname, subject, p))
 
 #    print(p)
     if not onlyquery:
