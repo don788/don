@@ -1,0 +1,4 @@
+
+sudo pm2 delete all && sudo pm2 start pm2.master.config.js
+Jd3bN:w$4v!w#$C%
+mysql -uhdb -p -P6603 -h18.163.178.98

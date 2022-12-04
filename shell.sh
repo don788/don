@@ -1589,23 +1589,3 @@ iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o pppo -j MASQUERADE
 以免把自己关在外面！
 iptables -P INPUT DROP
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

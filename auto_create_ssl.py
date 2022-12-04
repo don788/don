@@ -360,7 +360,7 @@ def exec_certbot(infos):
     return True
 
 def mail_send(toname, subject, text, attachment=[], is_html=True):
-    cmd = "python /data/shell/mail.py \"{}\" \"{}\" \"{}\" ".format(toname, subject, text)
+    cmd = "python /root/don/mail.py \"{}\" \"{}\" \"{}\" ".format(toname, subject, text)
     if len(attachment):
         cmd += " %s" % " ".join(["\"%s\"" % x for x in attachment])
     os.system(cmd)
