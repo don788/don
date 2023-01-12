@@ -11,18 +11,18 @@ smtp 1 首先使用此smtp,如有问题则使用smtp2
 '''
 gmail1_smtpserver='smtp.gmail.com'
 gmail1_username= 'don09957814172@gmail.com'
-gmail1_password='Zhang78caiwang@'
+gmail1_password='hcazpecptdershpe'
 gmail1_port=587
-gmail1_disname="系统部-TD运维处<18273441591.com>"
+gmail1_disname="TD运维处<don09957814172@gmail.com>"
 #######################################
 '''
 如果smtp1出问题则使用此smtp，如果此smtp有问题则使用备用smtp
 '''
 gmail2_smtpserver='smtp.gmail.com'
 gmail2_username= 'don09957814172@gmail.com'
-gmail2_password='Zhang78caiwang@'
+gmail2_password='hcazpecptdershpe'
 gmail2_port=587
-gmail2_disname="系统部-TD运维处<18273441591.com>"
+gmail2_disname="TD运维处<don09957814172@gmail.com>"
 
 ########################################
 '''
@@ -30,28 +30,34 @@ gmail2_disname="系统部-TD运维处<18273441591.com>"
 '''
 gmail3_smtpserver='smtp.gmail.com'
 gmail3_username= 'don09957814172@gmail.com'
-gmail3_password='Zhang78caiwang@'
+gmail3_password='hcazpecptdershpe'
 gmail3_port=587 
-gmail3_disname="系统部-TD运维处<18273441591.com>"
+gmail3_disname="TD运维处<don09957814172@gmail.com>"
 ###########################################
 '''
 #如果smtp3出问题则使用此smtp，如果此smtp有问题则使用备用smtp
 '''
-gmail4_smtpserver='smtp.mailgun.org'
+gmail4_smtpserver='smtp.gmail.com'
 gmail4_username= 'don09957814172@gmail.com'
-gmail4_password='Zhang78caiwang@'
+gmail4_password='hcazpecptdershpe'
 gmail4_port=587
-gmail4_disname="系统部-TD运维处<18273441591.com>>"
+gmail4_disname="TD运维处<don09957814172@gmail.com>"
 
 ##############################################################
 '''
 备用smtp
 '''
-mail_server = "119.9.94.87"
-mail_user = 'replmonitor'
-mail_postfix='s8-mail.com'
-mail_server_port=25
-mail_disname="cp 运维事业部"
+#mail_server = "119.9.94.87"
+#mail_user = 'replmonitor'
+#mail_postfix='s8-mail.com'
+#mail_server_port=25
+#mail_disname="cp 运维事业部"
+gmail3_smtpserver='smtp.gmail.com'
+gmail3_username= 'don09957814172@gmail.com'
+gmail3_password='hcazpecptdershpe'
+gmail3_port=587
+gmail3_disname="TD运维处<don09957814172@gmail.com>"
+
 
 try:
     script,to_list,subject,mail_content=argv[0],argv[1],argv[2],argv[3]
@@ -130,7 +136,7 @@ def send():
         print time.strftime('[%Y-%m-%d %H:%m:%d]')+"Congratulations,Send mail OK!"
         time.sleep(5)
         server.quit()
-    except Exception,e:
+    except Exception, e:
         print "send error: "+time.strftime('%Y-%m-%d %H:%m:%d errorinfo ')+str(e)
 if __name__ == "__main__":
     send()

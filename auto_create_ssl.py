@@ -258,7 +258,7 @@ def exec_certbot_single(info):
     ]
     s = S_Host(keyfile=KEY_FILE, endTag="# ")
     s.exeCmds(cmds)
-    cmd = "/data/shell/certbot-auto --manual --preferred-challenges dns-01 certonly"
+    cmd = "certbot --manual --preferred-challenges dns-01 certonly"
     for ele in info:
         cmd += " -d \"%s\"" % ele[0]
     print cmd
@@ -366,9 +366,9 @@ def mail_send(toname, subject, text, attachment=[], is_html=True):
     os.system(cmd)
     return
     smtpserver = 'smtp.gmail.com'
-    sender = 'admin.tech2@networkws.com'
-    password='zaki@ph.admin'
-    port=465
+    sender = 'don09957814172@gmail.com'
+    password='hcazpecptdershpe'
+    port=587
 
     # 创建一个带附件的实例
     message = MIMEMultipart()
@@ -401,7 +401,7 @@ def mail_send(toname, subject, text, attachment=[], is_html=True):
     return True
 
 def mail_notice(infos, num):
-    text = """<pre>Dear 臺灣同事：
+    text = """<pre>Dear 管理员：
       請幫忙添加一下TXT類型的解析記錄，詳情如下。
 """
     for domain,value in infos:
