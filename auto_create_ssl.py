@@ -258,7 +258,7 @@ def exec_certbot_single(info):
     ]
     s = S_Host(keyfile=KEY_FILE, endTag="# ")
     s.exeCmds(cmds)
-    cmd = "certbot --manual --preferred-challenges dns-01 certonly"
+    cmd = "certbot certonly --manual --preferred-challenges dns-01 -d"
     for ele in info:
         cmd += " -d \"%s\"" % ele[0]
     print cmd
@@ -281,6 +281,7 @@ def exec_certbot_single(info):
     url_num -= 1
     cmd_info = {"cmd":cmd, "endTag":"# ", "isGet":True, "match":[["Is this ok [y/N]: ", "y", -1],["(E)xpand/(C)ancel: ", "E",-1],["(Y)es/(N)o: ", "y",-1],["Press Enter to Continue", "",url_num]], "breakpoint":[["verify the record is deployed", modify_txt_records],]}
     ret = s.exeCmds([cmd_info])
+    print(ret)
     s.disconnect(isEnd=True)
 
     n = -1
@@ -360,7 +361,7 @@ def exec_certbot(infos):
     return True
 
 def mail_send(toname, subject, text, attachment=[], is_html=True):
-    cmd = "python /root/don/mail.py \"{}\" \"{}\" \"{}\" ".format(toname, subject, text)
+    cmd = "python /home/don/mail.py \"{}\" \"{}\" \"{}\" ".format(toname, subject, text)
     if len(attachment):
         cmd += " %s" % " ".join(["\"%s\"" % x for x in attachment])
     os.system(cmd)
