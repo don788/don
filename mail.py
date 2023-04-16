@@ -10,8 +10,8 @@ from sys import argv,exit
 smtp 1 首先使用此smtp,如有问题则使用smtp2
 '''
 gmail1_smtpserver='smtp.gmail.com'
-gmail1_username= 'don09957814172@gmail.com'
-gmail1_password='hcazpecptdershpe'
+gmail1_username= 'don9914241099@gmail.com'
+gmail1_password='lhuifksbwdfselll'
 gmail1_port=587
 gmail1_disname="TD运维处<don09957814172@gmail.com>"
 #######################################
@@ -19,8 +19,8 @@ gmail1_disname="TD运维处<don09957814172@gmail.com>"
 如果smtp1出问题则使用此smtp，如果此smtp有问题则使用备用smtp
 '''
 gmail2_smtpserver='smtp.gmail.com'
-gmail2_username= 'don09957814172@gmail.com'
-gmail2_password='hcazpecptdershpe'
+gmail2_username= 'don9914241099@gmail.com'
+gmail2_password='lhuifksbwdfselll'
 gmail2_port=587
 gmail2_disname="TD运维处<don09957814172@gmail.com>"
 
@@ -29,8 +29,8 @@ gmail2_disname="TD运维处<don09957814172@gmail.com>"
 如果smtp2出问题则使用此smtp，如果此smtp有问题则使用备用smtp3
 '''
 gmail3_smtpserver='smtp.gmail.com'
-gmail3_username= 'don09957814172@gmail.com'
-gmail3_password='hcazpecptdershpe'
+gmail3_username= 'don9914241099@gmail.com'
+gmail3_password='lhuifksbwdfselll'
 gmail3_port=587 
 gmail3_disname="TD运维处<don09957814172@gmail.com>"
 ###########################################
@@ -38,8 +38,8 @@ gmail3_disname="TD运维处<don09957814172@gmail.com>"
 #如果smtp3出问题则使用此smtp，如果此smtp有问题则使用备用smtp
 '''
 gmail4_smtpserver='smtp.gmail.com'
-gmail4_username= 'don09957814172@gmail.com'
-gmail4_password='hcazpecptdershpe'
+gmail4_username= 'don9914241099@gmail.com'
+gmail4_password='lhuifksbwdfselll'
 gmail4_port=587
 gmail4_disname="TD运维处<don09957814172@gmail.com>"
 
@@ -53,10 +53,10 @@ gmail4_disname="TD运维处<don09957814172@gmail.com>"
 #mail_server_port=25
 #mail_disname="cp 运维事业部"
 gmail3_smtpserver='smtp.gmail.com'
-gmail3_username= 'don09957814172@gmail.com'
-gmail3_password='hcazpecptdershpe'
+gmail3_username= 'don9914241099@gmail.com'
+gmail3_password='lhuifksbwdfselll'
 gmail3_port=587
-gmail3_disname="TD运维处<don09957814172@gmail.com>"
+gmail3_disname="TD运维处<don9914241099@gmail.com@gmail.com>"
 
 
 try:
