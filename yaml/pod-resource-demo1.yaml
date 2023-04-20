@@ -1,0 +1,20 @@
+#CPU 我们给的是 50m，也就是 0.05core，这 0.05core 也就是占了 1 CPU 里的 5% 的资源时间。而限制资源是给的是 100m，但是需要注意的是 CPU 资源是可压缩资源，也就是容器达到了这个设定的上限后，容器性能会下降，但是不会终止或退出
+# pod-resource-demo1.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-demo1
+spec:
+  containers:
+  - name: resource-demo1
+    image: nginx
+    ports:
+    - containerPort: 80
+    resources:
+      requests:
+        memory: 50Mi
+        cpu: 50m
+      limits:
+        memory: 100Mi
+        cpu: 100m
+
