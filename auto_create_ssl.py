@@ -17,8 +17,8 @@ import multiprocessing
 import paramiko
 import dns.resolver
 
-ALL_ADMIN =   "admin@weststarinc.co"
-PH_ADMIN = "ph.admin@weststarinc.co"
+ALL_ADMIN ="don9914241099@gmail.com"
+PH_ADMIN = "don9914241099@gmail.com"
 #这个证书是为了方便脚本执行shell命令，要求能够
 KEY_FILE = "/root/.ssh/id_rsa"
 RECORD_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),"record_certbot.txt")
@@ -258,7 +258,7 @@ def exec_certbot_single(info):
     ]
     s = S_Host(keyfile=KEY_FILE, endTag="# ")
     s.exeCmds(cmds)
-    cmd = "certbot certonly --manual --preferred-challenges dns-01 -d"
+    cmd = "certbot certonly --manual --preferred-challenges dns"
     for ele in info:
         cmd += " -d \"%s\"" % ele[0]
     print cmd
@@ -361,7 +361,7 @@ def exec_certbot(infos):
     return True
 
 def mail_send(toname, subject, text, attachment=[], is_html=True):
-    cmd = "python /home/don/mail.py \"{}\" \"{}\" \"{}\" ".format(toname, subject, text)
+    cmd = "python /root/don/mail.py \"{}\" \"{}\" \"{}\" ".format(toname, subject, text)
     if len(attachment):
         cmd += " %s" % " ".join(["\"%s\"" % x for x in attachment])
     os.system(cmd)
@@ -555,7 +555,7 @@ def main(infos):
 
 if __name__ == "__main__":
     #infos = [['51:40:C1:46:1B:50:2F:56:E3:77:68:12:E0:CC:7E:F3:BC:4A:B7:36', ['47.57.148.148', '61.4.115.159'], (False, '\xe8\xaf\x81\xe4\xb9\xa6\xe6\x9c\xaa\xe8\xbf\x87\xe6\x9c\x9f\xef\xbc\x8c\xe5\x88\xb0\xe6\x9c\x9f\xe6\x97\xb6\xe9\x97\xb4\xe4\xb8\xba 2020\xe5\xb9\xb407\xe6\x9c\x8806\xe6\x97\xa517\xe6\x97\xb624\xe5\x88\x8655\xe7\xa7\x92'), ['www.hengx1.com', 'www.hengx6.com', 'www.hengx7.com', 'www.hengx10.com', 'www.hengxuan8888.com', 'www.hengx4.com'], ['88888heng.com', 'ajadc.com', 'dlxszc.com', 'hengcai8best.com', 'hengx1.com', 'hengx10.com', 'hengx2.com', 'hengx3.com', 'hengx4.com', 'hengx5.com', 'hengx6.com', 'hengx7.com', 'hengx8.com', 'hengx9.com', 'hengxuan16888.com', 'hengxuan6688.com', 'hengxuan8888.com', 'hxuan168.com', 'hxuan88.com', 'www.88888heng.com', 'www.dlxszc.com', 'www.hengcai8best.com', 'www.hengx1.com', 'www.hengx10.com', 'www.hengx2.com', 'www.hengx3.com', 'www.hengx4.com', 'www.hengx5.com', 'www.hengx6.com', 'www.hengx7.com', 'www.hengx8.com', 'www.hengx9.com', 'www.hengxuan16888.com', 'www.hengxuan6688.com', 'www.hengxuan8888.com', 'www.hxuan168.com', 'www.hxuan88.com']], ['51:40:C1:46:1B:50:2F:56:E3:77:68:12:E0:CC:7E:F3:BC:4A:B7:36', ['47.57.125.211'], (False, '\xe8\xaf\x81\xe4\xb9\xa6\xe6\x9c\xaa\xe8\xbf\x87\xe6\x9c\x9f\xef\xbc\x8c\xe5\x88\xb0\xe6\x9c\x9f\xe6\x97\xb6\xe9\x97\xb4\xe4\xb8\xba 2020\xe5\xb9\xb407\xe6\x9c\x8806\xe6\x97\xa517\xe6\x97\xb624\xe5\x88\x8655\xe7\xa7\x92'), ['hengx7.com', 'hengx10.com', 'hengxuan16888.com', 'hengx1.com', 'hengx3.com', 'hxuan168.com', 'hengx8.com', 'hengx9.com', 'hengx5.com', 'hxuan88.com', 'hengx2.com', 'hengxuan8888.com', 'hengx4.com', 'hengx6.com', 'hengxuan6688.com'], ['88888heng.com', 'ajadc.com', 'dlxszc.com', 'hengcai8best.com', 'hengx1.com', 'hengx10.com', 'hengx2.com', 'hengx3.com', 'hengx4.com', 'hengx5.com', 'hengx6.com', 'hengx7.com', 'hengx8.com', 'hengx9.com', 'hengxuan16888.com', 'hengxuan6688.com', 'hengxuan8888.com', 'hxuan168.com', 'hxuan88.com', 'www.88888heng.com', 'www.dlxszc.com', 'www.hengcai8best.com', 'www.hengx1.com', 'www.hengx10.com', 'www.hengx2.com', 'www.hengx3.com', 'www.hengx4.com', 'www.hengx5.com', 'www.hengx6.com', 'www.hengx7.com', 'www.hengx8.com', 'www.hengx9.com', 'www.hengxuan16888.com', 'www.hengxuan6688.com', 'www.hengxuan8888.com', 'www.hxuan168.com', 'www.hxuan88.com']], ['51:40:C1:46:1B:50:2F:56:E3:77:68:12:E0:CC:7E:F3:BC:4A:B7:36', ['61.4.115.159', '47.57.148.148'], (False, '\xe8\xaf\x81\xe4\xb9\xa6\xe6\x9c\xaa\xe8\xbf\x87\xe6\x9c\x9f\xef\xbc\x8c\xe5\x88\xb0\xe6\x9c\x9f\xe6\x97\xb6\xe9\x97\xb4\xe4\xb8\xba 2020\xe5\xb9\xb407\xe6\x9c\x8806\xe6\x97\xa517\xe6\x97\xb624\xe5\x88\x8655\xe7\xa7\x92'), ['www.hengxuan.com']]
-    infos = [['51:40:C1:46:1B:50:2F:56:E3:77:68:12:E0:CC:7E:F3:BC:4A:B7:36', ['61.4.115.159', '47.57.148.148'], (False, '\xe8\xaf\x81\xe4\xb9\xa6\xe6\x9c\xaa\xe8\xbf\x87\xe6\x9c\x9f\xef\xbc\x8c\xe5\x88\xb0\xe6\x9c\x9f\xe6\x97\xb6\xe9\x97\xb4\xe4\xb8\xba 2020\xe5\xb9\xb407\xe6\x9c\x8806\xe6\x97\xa517\xe6\x97\xb624\xe5\x88\x8655\xe7\xa7\x92'), ["oisjrgiks.com","wap.oisjrgiks.com","www.oisjrgiks.com","laksjfl.com","www.laksjfl.com","wap.laksjfl.com","oaihdk.com","www.oaihdk.com","wap.oaihdk.com","oaiwehfj.com","www.oaiwehfj.com","wap.oaiwehfj.com","sexy121.com","wap.sexy121.com","www.sexy121.com","sexy556.com","www.sexy556.com","wap.sexy556.com","sexy668.com","www.sexy668.com","wap.sexy668.com","sexyabc.com","www.sexyabc.com","wap.sexyabc.com","usdhnfu.com","www.usdhnfu.com","wap.usdhnfu.com"]]]
+    infos = [['51:40:C1:46:1B:50:2F:56:E3:77:68:12:E0:CC:7E:F3:BC:4A:B7:36', ['61.4.115.159', '47.57.148.148'], (False, '\xe8\xaf\x81\xe4\xb9\xa6\xe6\x9c\xaa\xe8\xbf\x87\xe6\x9c\x9f\xef\xbc\x8c\xe5\x88\xb0\xe6\x9c\x9f\xe6\x97\xb6\xe9\x97\xb4\xe4\xb8\xba 2020\xe5\xb9\xb407\xe6\x9c\x8806\xe6\x97\xa517\xe6\x97\xb624\xe5\x88\x8655\xe7\xa7\x92'), ["oisjrgiks.com","wap.oisjrgiks.com"]]]
     RET = main(infos)
     sys.exit(0) if RET else sys.exit(1)
 
