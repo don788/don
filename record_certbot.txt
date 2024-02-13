@@ -1,0 +1,1 @@
+[["jintai.1231276.cn", "jintai.0d81ac1.cn"], "20231206", ["/etc/letsencrypt/live/jintai.1231276.cn/fullchain.pem", "/etc/letsencrypt/live/jintai.1231276.cn/privkey.pem"]]
